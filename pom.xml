@@ -1,0 +1,185 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>TestJAXBJersey</groupId>
+  <artifactId>TestJAXBJersey</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <properties>
+    <appengine.maven.plugin.version>2.0.0</appengine.maven.plugin.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
+
+    <INSTANCE_CONNECTION_NAME>testjaxbjersey:asia-south1:test-rest-jersey-crud</INSTANCE_CONNECTION_NAME>
+  	<user>chandniverma</user>
+  	<password>mylove</password>
+  	<database>customers</database>
+  	<spring.version>4.0.1.RELEASE</spring.version>
+  </properties>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <plugins>
+    
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+        <version>2.3</version>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>display-dependency-updates</goal>
+              <goal>display-plugin-updates</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+        <artifactId>appengine-maven-plugin</artifactId>
+        <version>${appengine.maven.plugin.version}</version>
+      </plugin>
+    
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.1</version>
+        <configuration>
+          <warSourceDirectory>WebContent</warSourceDirectory>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+
+<dependencies>
+ <dependency>
+  <groupId>org.glassfish.jersey.core</groupId>
+  <artifactId>jersey-server</artifactId>
+  <version>2.28</version>
+ </dependency>
+
+ <dependency>
+  <groupId>org.glassfish.jersey.containers</groupId>
+  <artifactId>jersey-container-servlet</artifactId>
+  <version>2.28</version>
+ </dependency>
+
+ <dependency>
+<groupId>com.google.appengine</groupId>
+<artifactId>appengine-api-1.0-sdk</artifactId>
+<version>1.9.75</version>
+</dependency>
+<!-- Test Dependencies -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+
+ <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-common -->
+<dependency>
+    <groupId>org.glassfish.jersey.core</groupId>
+    <artifactId>jersey-common</artifactId>
+    <version>2.28</version>
+</dependency>
+
+<dependency>
+    <groupId>org.glassfish.jersey.inject</groupId>
+    <artifactId>jersey-hk2</artifactId>
+    <version>2.28</version>
+</dependency>
+
+<!-- OLD ARTICLE(DO NOT USE THIS DEP. CONFLICTS WITH JERSEY 2.x): For converting object to and from JSON: https://www.mkyong.com/webservices/jax-rs/json-example-with-jersey-jackson/ -->
+<!-- https://mvnrepository.com/artifact/com.sun.jersey/jersey-json -->
+<!-- <dependency>
+    <groupId>com.sun.jersey</groupId>
+    <artifactId>jersey-json</artifactId>
+    <version>1.19.4</version>
+</dependency> -->
+
+<!-- https://www.igorkromin.net/index.php/2017/03/22/using-jersey-2x-as-a-shared-library-on-weblogic-1212/ -->
+<!-- https://www.igorkromin.net/index.php/2017/04/22/using-jackson-to-automatically-convert-java-pojos-to-json-as-output-of-a-jersey-service/ -->
+<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-json-jackson -->
+<dependency>
+    <groupId>org.glassfish.jersey.media</groupId>
+    <artifactId>jersey-media-json-jackson</artifactId>
+    <version>2.28</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-jaxb -->
+<dependency>
+    <groupId>org.glassfish.jersey.media</groupId>
+    <artifactId>jersey-media-jaxb</artifactId>
+    <version>2.28</version>
+</dependency>
+<dependency>
+    <groupId>org.glassfish.jersey.media</groupId>
+    <artifactId>jersey-media-moxy</artifactId>
+    <version>2.28</version>
+</dependency>
+
+ 
+ <!-- Spring dependencies -->
+	<!-- 	<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <version>${spring.version}</version>
+		</dependency> -->
+
+  
+      <!-- [START gae_java8_mysql_dependencies] -->
+    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.16</version>
+</dependency>
+
+    <dependency>
+      <groupId>com.google.cloud.sql</groupId>
+      <artifactId>mysql-socket-factory</artifactId>
+      <version>1.0.14</version>
+    </dependency>
+    <!-- [END gae_java8_mysql_dependencies] -->
+    
+<!-- From https://github.com/GoogleCloudPlatform/cloud-sql-jdbc-socket-factory -->    
+<dependency>
+    <groupId>com.google.cloud.sql</groupId>
+    <artifactId>mysql-socket-factory-connector-j-8</artifactId>
+    <version>1.0.14</version>
+</dependency>
+
+  
+</dependencies>
+
+
+</project>
