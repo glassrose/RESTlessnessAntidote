@@ -1,0 +1,3 @@
+Open-sourcing an old personal project to test RESTful web-services using Jersey/Maven.
+This project demonstrates some simple CRUD operations on a Relational DB.
+It also carries some logic for very simple authentication.
